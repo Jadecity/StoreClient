@@ -16,3 +16,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp
+
+HEADERS += \
+    ui.h \
+    excepEvents.h \
+    statics.h \
+    workFlow.h \
+    storageMgr.h \
+    dataIO.h \
+    net.h
