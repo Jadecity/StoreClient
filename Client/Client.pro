@@ -16,7 +16,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    net.cpp
+    net.cpp \
+    testnetconnector.cpp \
+    dataIO.cpp \
+    testdatatrans.cpp
 
 HEADERS += \
     ui.h \
@@ -25,4 +28,7 @@ HEADERS += \
     workFlow.h \
     storageMgr.h \
     dataIO.h \
-    net.h
+    net.h \
+    testnetconnector.h \
+    testdatatrans.h \
+    upcenbase.h
