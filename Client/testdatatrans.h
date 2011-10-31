@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include"dataIO.h"
-#include"upcenbase.h"
-class testDatatrans : public QObject,public UpcenBase
+#include"upcntrbase.h"
+class testDatatrans : public UpCntrBase
 {
     Q_OBJECT
 public:

@@ -8,13 +8,13 @@ using namespace Net;
 #define DEBUG
 #endif
 class QByteArray;
-class UpcenBase;
+class UpCntrBase;
 
 namespace DataIO
 {
      class IOBase
      {
-         virtual void request(UpcenBase *caller,QByteArray &cmd) = 0;
+         virtual void request(UpCntrBase *caller,QByteArray &cmd) = 0;
      };
 
      class DataTrans:public QObject,public IOBase
@@ -23,11 +23,11 @@ namespace DataIO
      private:
          QByteArray databuf;
          NetConnector *net;
-         QQueue<UpcenBase *> msgOwner;
+         QQueue<UpCntrBase *> msgOwner;
      public:
          DataTrans();
          DataTrans(NetConnector *net);
-         void request(UpcenBase *caller,QByteArray &cmd);
+         void request(UpCntrBase *caller,QByteArray &cmd);
          int setNet(NetConnector *net);
      public slots:
          void readData();

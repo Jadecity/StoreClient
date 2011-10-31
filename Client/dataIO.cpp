@@ -1,5 +1,5 @@
 #include"dataIO.h"
-#include"upcenbase.h"
+#include"upcntrbase.h"
 #include<QByteArray>
 #include<QDataStream>
 using namespace DataIO;
@@ -21,7 +21,7 @@ DataTrans::DataTrans(Net::NetConnector *net):
    this->setNet (net);
 }
 
-void DataTrans::request (UpcenBase *caller,QByteArray &cmd)
+void DataTrans::request (UpCntrBase *caller,QByteArray &cmd)
 {
     net->write(cmd);
     msgOwner.enqueue (caller);
@@ -30,7 +30,7 @@ void DataTrans::request (UpcenBase *caller,QByteArray &cmd)
 void DataTrans::handIn()
 {
 
-   UpcenBase *owner = msgOwner.dequeue ();
+   UpCntrBase *owner = msgOwner.dequeue ();
     owner->recv(databuf);
     databuf.clear ();
 }

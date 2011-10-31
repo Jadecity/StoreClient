@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     net.cpp \
     testnetconnector.cpp \
     dataIO.cpp \
-    testdatatrans.cpp
+    testdatatrans.cpp \
+    storageMgr.cpp
 
 HEADERS += \
     ui.h \
@@ -31,4 +32,5 @@ HEADERS += \
     net.h \
     testnetconnector.h \
     testdatatrans.h \
-    upcenbase.h
+    upcntrbase.h \
+    cmddef.h

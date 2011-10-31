@@ -1,0 +1,17 @@
+#ifndef STORAGEMGR_H
+#define STORAGEMGR_H
+class QString;
+namespace StorageMgr
+{
+    struct PosiInfo
+    {
+       QString goodname;
+       int stayedtime;
+       int toStay;
+       double price;
+       int amount;
+       QString unit;//unit is evalued how amount is measured
+       
+    };
+}
+#endif // STORAGEMGR_H

@@ -2,8 +2,7 @@
 #include <iostream>
 #include<QDataStream>
 using namespace std;
-testDatatrans::testDatatrans(QObject *parent) :
-    QObject(parent),UpcenBase()
+testDatatrans::testDatatrans(QObject *parent) :UpCntrBase()
 {
     dt = new DataIO::DataTrans();
 }
