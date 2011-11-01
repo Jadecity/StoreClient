@@ -22,18 +22,43 @@ void PosiMgr::getPoso (int *x, int *y)
     *y = position.second;
 }
 
+void PosiMgr::disp (PosiInfo &info)
+{
+    /*
+     *just for debug
+     */
+    cout<<info.goodname.to<<"\n"<<info.stayedtime<<"\n"<<info.toStay<<"\n"<<info.price<<"\n"<<info.amount<<"\n"<<info.unit.data ()<<"\n"<<info.owner.data ()<<endl;
+}
+
 void PosiMgr::recv (QByteArray data)
 {
     //do analysis and call reflective methods
-    cout<<"recved data :"<<data.data ()<<endl;
+    cout<<"recved data :"<<endl;
+    QDataStream ds(&data,QIODevice::ReadOnly);
+    PosiInfo info;
+
+    /*
+     *get all data from source and build a struct PosiInfo
+     */
+    char *s ;
+    ds>>s;
+    info.goodname = QString(s);
+    ds>>info.stayedtime;
+    ds>>info.toStay;
+    ds>>info.price;
+    ds>>info.amount;
+    ds>>s;
+    info.unit = QString(s);
+    ds>>s;
+    info.owner = QString(s);
+
+    disp(info);
 }
 
 void PosiMgr::setDatacntr (DataTrans *dc)
 {
     if(dc!=NULL)
       this->datacntr = dc;
-
-    connect (datacntr,SIGNAL(dataReady()),this,SLOT(recv(QByteArray)));
 }
 
 void PosiMgr::lookAtxy(int *posi)

@@ -12,7 +12,9 @@ using namespace std;
 DataTrans::DataTrans():IOBase()
 {
     net = NULL;
-    connect(this,SIGNAL(dataReady()),SLOT(handIn()));
+    /*
+    *connect(this,SIGNAL(dataReady()),SLOT(handIn()));
+    */
 }
 
 DataTrans::DataTrans(Net::NetConnector *net):
@@ -67,9 +69,12 @@ void DataTrans::readData ()
 
     if(curSize == totalSize)
     {
-        emit dataReady();
         totalSize = 0;
         curSize = 0;
         flag = 1;
+        /*
+        *emit dataReady();
+        */
+        handIn ();
     }
 }

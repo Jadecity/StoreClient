@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     testnetconnector.cpp \
     dataIO.cpp \
     testdatatrans.cpp \
-    storageMgr.cpp
+    storageMgr.cpp \
+    teststoragemgr.cpp
 
 HEADERS += \
     ui.h \
@@ -33,4 +34,5 @@ HEADERS += \
     testnetconnector.h \
     testdatatrans.h \
     upcntrbase.h \
-    cmddef.h
+    cmddef.h \
+    teststoragemgr.h
