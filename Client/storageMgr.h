@@ -5,6 +5,7 @@
 #include"dataIO.h"
 #include"upcntrbase.h"
 #include "cmddef.h"
+#include "globalDataType.h"
 #include<iostream>
 using namespace std;
 using namespace DataIO;
@@ -12,16 +13,6 @@ using namespace DataIO;
 class QString;
 namespace StorageMgr
 {
-    struct PosiInfo
-    {
-       QString goodname;
-       int stayedtime;
-       int toStay;
-       double price;
-       int amount;
-       QString unit;//unit is evalued how amount is measured
-       QString owner;
-    };
 
     class PosiMgr:public UpCntrBase
     {
@@ -34,11 +25,14 @@ namespace StorageMgr
         double ocurate();//货物空间占有率
         void setPosi(int x,int y);
         void getPoso(int *x,int *y);
-        void disp(PosiInfo &info);
         void setDatacntr (DataTrans *dc);
         /*
          *void registerUI();
          */
+    private:
+          void dispPosi(PosiInfo &info);
+          void dispGood(GoodInfo &info);
+          void dispException(QString &msg);
     public slots:
         void lookUpGood(int *posi);
         void lookUpGood (QString name);

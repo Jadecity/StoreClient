@@ -9,6 +9,7 @@ PosiMgr::PosiMgr()
 double PosiMgr::ocurate ()
 {
     //还没想好怎么写
+     //to be modified
 }
 
 void PosiMgr::setPosi(int x, int y)
@@ -22,12 +23,23 @@ void PosiMgr::getPoso (int *x, int *y)
     *y = position.second;
 }
 
-void PosiMgr::disp (PosiInfo &info)
+void PosiMgr::dispPosi (PosiInfo &info)
 {
+     //to be modified
     /*
      *just for debug
      */
     cout<<"\n"<<info.stayedtime<<"\n"<<info.toStay<<"\n"<<info.price<<"\n"<<info.amount<<"\n"<<info.unit.data ()<<"\n"<<info.owner.data ()<<endl;
+}
+
+void PosiMgr::dispGood (GoodInfo &info)
+{
+ //to be modified
+}
+
+void PosiMgr::dispException (QString &msg)
+{
+    //to be modified
 }
 
 void PosiMgr::recv (QByteArray data)
@@ -35,24 +47,51 @@ void PosiMgr::recv (QByteArray data)
     //do analysis and call reflective methods
     cout<<"recved data :"<<endl;
     QDataStream ds(&data,QIODevice::ReadOnly);
-    PosiInfo info;
+    char *temp;
+    ds>>temp;
+    if(!strcmp (temp,NOTHING))/*reply flag is indicated to find nothing of that action*/
+    {
+        QString msg("抱歉，没有找到任何您需要的数据！");
+        dispException(msg);
+        return;
+    }
+    ds>>temp;
+    if(!strcmp (temp,POSI_INFO))/*reply is position info*/
+    {
+        /*
+         *get all data from source and build a struct PosiInfo
+         */
+         PosiInfo info;
+        char *s ;
+        ds>>s;
+        info.goodname = QString(s);
+        ds>>info.stayedtime;
+        ds>>info.toStay;
+        ds>>info.price;
+        ds>>info.amount;
+        ds>>s;
+        info.unit = QString(s);
+        ds>>s;
+        info.owner = QString(s);
 
-    /*
-     *get all data from source and build a struct PosiInfo
-     */
-    char *s ;
-    ds>>s;
-    info.goodname = QString(s);
-    ds>>info.stayedtime;
-    ds>>info.toStay;
-    ds>>info.price;
-    ds>>info.amount;
-    ds>>s;
-    info.unit = QString(s);
-    ds>>s;
-    info.owner = QString(s);
+        dispPosi(info);
+    }else if(!strcmp (temp,GOOD_INFO))/*reply is good info*/
+    {
+        GoodInfo info;
+        char *s;
+        ds>>info.posi[0]>>info.posi[1];
+        ds>>s;
+        info.name = QString(s);
+        ds>>info.price>>info.amount;
+        ds>>s;
+        info.unit = QString(s);
+        ds>>s;
+        info.owner = QString(s);
+        ds>>s;
+        info.arriveTime = QString(s);
+        dispGood (info);
+    }
 
-    disp(info);
 }
 
 void PosiMgr::setDatacntr (DataTrans *dc)
@@ -85,7 +124,7 @@ void PosiMgr::lookUpGood (QString name)
     QByteArray cmd;
     QDataStream ds(&cmd,QIODevice::ReadWrite);
     ds<<GET<<GOOD_INFO;
-    ds<<"我们";
+    ds<<name;
     QByteArray temp;
     QDataStream ds2(&temp,QIODevice::ReadWrite);
     ds2<<cmd.size ();
@@ -96,5 +135,6 @@ void PosiMgr::lookUpGood (QString name)
 /*
  *void PosiMgr::registerUI()
 *{
+* //to be modified
 *}
  */

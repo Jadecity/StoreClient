@@ -35,4 +35,5 @@ HEADERS += \
     testdatatrans.h \
     upcntrbase.h \
     cmddef.h \
-    teststoragemgr.h
+    teststoragemgr.h \
+    globalDataType.h
