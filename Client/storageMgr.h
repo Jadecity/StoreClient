@@ -36,8 +36,12 @@ namespace StorageMgr
         void getPoso(int *x,int *y);
         void disp(PosiInfo &info);
         void setDatacntr (DataTrans *dc);
+        /*
+         *void registerUI();
+         */
     public slots:
-        void lookAtxy(int *posi);
+        void lookUpGood(int *posi);
+        void lookUpGood (QString name);
         void recv (QByteArray data);
     };
 }

@@ -27,7 +27,7 @@ void PosiMgr::disp (PosiInfo &info)
     /*
      *just for debug
      */
-    cout<<info.goodname.to<<"\n"<<info.stayedtime<<"\n"<<info.toStay<<"\n"<<info.price<<"\n"<<info.amount<<"\n"<<info.unit.data ()<<"\n"<<info.owner.data ()<<endl;
+    cout<<"\n"<<info.stayedtime<<"\n"<<info.toStay<<"\n"<<info.price<<"\n"<<info.amount<<"\n"<<info.unit.data ()<<"\n"<<info.owner.data ()<<endl;
 }
 
 void PosiMgr::recv (QByteArray data)
@@ -61,7 +61,7 @@ void PosiMgr::setDatacntr (DataTrans *dc)
       this->datacntr = dc;
 }
 
-void PosiMgr::lookAtxy(int *posi)
+void PosiMgr::lookUpGood(int *posi)
 {
     if(posi != NULL)
     {
@@ -78,3 +78,23 @@ void PosiMgr::lookAtxy(int *posi)
          datacntr->request (this,cmd);
     }
 }
+
+void PosiMgr::lookUpGood (QString name)
+{
+    //build command
+    QByteArray cmd;
+    QDataStream ds(&cmd,QIODevice::ReadWrite);
+    ds<<GET<<GOOD_INFO;
+    ds<<"ฮารว";
+    QByteArray temp;
+    QDataStream ds2(&temp,QIODevice::ReadWrite);
+    ds2<<cmd.size ();
+    cmd = temp + cmd;
+
+    datacntr->request (this,cmd);
+}
+/*
+ *void PosiMgr::registerUI()
+*{
+*}
+ */

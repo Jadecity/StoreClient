@@ -1,6 +1,8 @@
 #ifndef TESTSTORAGEMGR_H
 #define TESTSTORAGEMGR_H
 
+//#define TEST_POSI
+#define TEST_NAME
 #include <QObject>
 #include"storageMgr.h"
 using namespace StorageMgr;
@@ -12,7 +14,7 @@ public:
    void  start();
 signals:
     void needInfo(int *);
-
+    void needInfo (QString name);
 public slots:
 
 };
