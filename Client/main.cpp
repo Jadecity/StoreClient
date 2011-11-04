@@ -2,6 +2,7 @@
 #include "testnetconnector.h"
 #include"testDatatrans.h"
 #include"teststoragemgr.h"
+#include "testuecepmgr.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -12,8 +13,12 @@ int main(int argc, char *argv[])
 
     testDatatrans *tdt = new testDatatrans();
     tdt->start ();
-    */
+
     teststorageMgr *tst = new teststorageMgr();
+    tst->start ();
+*/
+
+    testUEcepMgr *tst = new testUEcepMgr();
     tst->start ();
     return a.exec();
 }

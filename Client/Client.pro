@@ -21,7 +21,9 @@ SOURCES += main.cpp \
     dataIO.cpp \
     testdatatrans.cpp \
     storageMgr.cpp \
-    teststoragemgr.cpp
+    teststoragemgr.cpp \
+    excepEvents.cpp \
+    testuecepmgr.cpp
 
 HEADERS += \
     ui.h \
@@ -36,4 +38,5 @@ HEADERS += \
     upcntrbase.h \
     cmddef.h \
     teststoragemgr.h \
-    globalDataType.h
+    globalDataType.h \
+    testuecepmgr.h

@@ -124,7 +124,7 @@ void PosiMgr::lookUpGood (QString name)
     QByteArray cmd;
     QDataStream ds(&cmd,QIODevice::ReadWrite);
     ds<<GET<<GOOD_INFO;
-    ds<<name;
+    ds<<name.toUtf8 ();
     QByteArray temp;
     QDataStream ds2(&temp,QIODevice::ReadWrite);
     ds2<<cmd.size ();
