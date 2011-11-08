@@ -14793,10 +14793,10 @@ or write data to DataTransfer
 <XPD:OBJ name="OwnedViews[0]" type="UMLClassView" guid="2Z1rJc7p9EqUQrlfo5TA6QAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">292</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">288</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">172</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">179</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">95</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">182</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">147</XPD:ATTR>
 <XPD:REF name="Model">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="NDq+4AmDIUWEFQCdlxrRNQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="HzKRhIkPRkuC8vypmHtbmAAA">
@@ -14855,7 +14855,7 @@ or write data to DataTransfer
 <XPD:OBJ name="OwnedViews[2]" type="UMLGeneralizationView" guid="oG2lNUMy40aeWbqikbb7PwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">377,172;372,102</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">374,172;371,102</XPD:ATTR>
 <XPD:REF name="Model">wKX8G8ElWUm5fKi4YDu1jAAA</XPD:REF>
 <XPD:REF name="Head">hHQ/plfUkkuaChZLLIWIRAAA</XPD:REF>
 <XPD:REF name="Tail">2Z1rJc7p9EqUQrlfo5TA6QAA</XPD:REF>
@@ -15025,7 +15025,7 @@ record  记录变更日志
 <XPD:REF name="Views[3]">rhnqbHQNG06tu1oAPYuGAwAA</XPD:REF>
 <XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
 <XPD:REF name="Generalizations[0]">wKX8G8ElWUm5fKi4YDu1jAAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">4</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">8</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="RHSY7Ap6XkmXnY0c6/cDHAAA">
 <XPD:ATTR name="Name" type="string">upload</XPD:ATTR>
 <XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
@@ -15054,7 +15054,21 @@ record  记录变更日志
 <XPD:REF name="BehavioralFeature">KVXKx9EGK066cM4WjyTvSwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="HA8Y88cCo0egVvGPTNjYbwAA">
+<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="BVeJR6li50uxzsr91ZMq6wAA">
+<XPD:ATTR name="Name" type="string">fetchContent</XPD:ATTR>
+<XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="JRiwYx7o6kWKRZekXL0/wQAA">
+<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">slot</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">BVeJR6li50uxzsr91ZMq6wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="07rp3ztOgE2w8+CsSRSoKwAA">
+<XPD:ATTR name="Name" type="string">QString date</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">BVeJR6li50uxzsr91ZMq6wAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="HA8Y88cCo0egVvGPTNjYbwAA">
 <XPD:ATTR name="Name" type="string">diaries</XPD:ATTR>
 <XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
@@ -15067,13 +15081,40 @@ record  记录变更日志
 <XPD:REF name="BehavioralFeature">HA8Y88cCo0egVvGPTNjYbwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="FFjni6C2SEmJwG3PO082yQAA">
+<XPD:OBJ name="Operations[4]" type="UMLOperation" guid="FFjni6C2SEmJwG3PO082yQAA">
 <XPD:ATTR name="Name" type="string">buildcmd</XPD:ATTR>
 <XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="l2Aw9mBGAEyDkZkJjRGoTgAA">
 <XPD:ATTR name="Name" type="string">Diary *</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">FFjni6C2SEmJwG3PO082yQAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="gWXh/1p/8UG3+fRjAi7yGwAA">
+<XPD:ATTR name="Name" type="string">dispStatus</XPD:ATTR>
+<XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="4OwR+0pwkEetROD6vZDdjAAA">
+<XPD:ATTR name="Name" type="string">QString status</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">gWXh/1p/8UG3+fRjAi7yGwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="/RGqqyt290Woze0g3NM8UgAA">
+<XPD:ATTR name="Name" type="string">dispDiaList</XPD:ATTR>
+<XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="JnzyvSc5+kGRH6UXwy5G0wAA">
+<XPD:ATTR name="Name" type="string">List&lt;Diary&gt; &amp;</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">/RGqqyt290Woze0g3NM8UgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[7]" type="UMLOperation" guid="jqTbDT/bEUWMptLqWUOBYAAA">
+<XPD:ATTR name="Name" type="string">dispDiaContent</XPD:ATTR>
+<XPD:REF name="Owner">2th2SH3ozE2+Se5yYmk+rwAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="sFOdu5C8ikq8Yj3SK6KL3wAA">
+<XPD:ATTR name="Name" type="string">QString &amp;content</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">jqTbDT/bEUWMptLqWUOBYAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
