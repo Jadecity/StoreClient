@@ -23,7 +23,7 @@ QByteArray WorkFlowExcep::UExcepMgr::buildcmd(WorkFlowExcep::ExcepRec *rec)
 {
     QByteArray cmd;
     QDataStream ds(&cmd,QIODevice::ReadWrite);
-    ds<<rec->title.toUtf8 ()<<rec->abstract.toUtf8 ()<<rec->detailDes.toUtf8 ()<<rec->reason.toUtf8 ()<<rec->action.toUtf8 ()<<rec->handlerId.toUtf8 ()<<rec->handlerName.toUtf8 ()<<rec->time.toUtf8 ();
+    ds<<HANDIN<<USR_EXCEPT<<rec->title.toUtf8 ()<<rec->abstract.toUtf8 ()<<rec->detailDes.toUtf8 ()<<rec->reason.toUtf8 ()<<rec->action.toUtf8 ()<<rec->handlerId.toUtf8 ()<<rec->handlerName.toUtf8 ()<<rec->time.toUtf8 ();
     QByteArray temp;
     QDataStream dstemp(&temp,QIODevice::ReadWrite);
     dstemp<<cmd.size ();

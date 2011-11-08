@@ -2,6 +2,7 @@
 #define STORAGEMGR_H
 #include<QPair>
 #include<QObject>
+#include <QList>
 #include"dataIO.h"
 #include"upcntrbase.h"
 #include "cmddef.h"
@@ -22,7 +23,7 @@ namespace StorageMgr
         DataTrans *datacntr;
     public:
         PosiMgr();
-        double ocurate();//货物空间占有率
+       // double ocurate();货物空间占有率
         void setPosi(int x,int y);
         void getPoso(int *x,int *y);
         void setDatacntr (DataTrans *dc);
@@ -38,5 +39,25 @@ namespace StorageMgr
         void lookUpGood (QString name);
         void recv (QByteArray data);
     };
+
+    class DiaryMgr:public UpCntrBase
+    {
+        Q_OBJECT
+    public:
+        DiaryMgr(QObject *parent = 0);
+        void  diaries(QString datefrom,QString dateto);
+        QByteArray buildcmd(Diary *content);
+        void setDatacntr (DataTrans *dc);
+        void dispStatus(QByteArray &status);
+        void dispDiaList(QList<Diary> &list);
+        void dispDiaContent(QString &content);
+    public slots:
+        void upload(QString *diary,int itemNo = DIARY_STRUCT_SIZE);
+       void checkDiary();
+       void fetchContent(QString date);
+       void recv (QByteArray data);
+    private:
+        DataTrans *datacntr;
+    };
 }
-#endif // STORAGEMGR_H
+#endif

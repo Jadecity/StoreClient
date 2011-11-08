@@ -5,13 +5,13 @@ PosiMgr::PosiMgr()
 {
     datacntr = NULL;
 }
-
+/*
 double PosiMgr::ocurate ()
 {
     //还没想好怎么写
      //to be modified
 }
-
+*/
 void PosiMgr::setPosi(int x, int y)
 {
     position = qMakePair(x,y);
@@ -45,6 +45,7 @@ void PosiMgr::dispException (QString &msg)
 void PosiMgr::recv (QByteArray data)
 {
     //do analysis and call reflective methods
+    //to be modified
     cout<<"recved data :"<<endl;
     QDataStream ds(&data,QIODevice::ReadOnly);
     char *temp;
@@ -138,3 +139,140 @@ void PosiMgr::lookUpGood (QString name)
 * //to be modified
 *}
  */
+
+
+/*
+ *第二个类DiaryMgr
+*/
+DiaryMgr::DiaryMgr(QObject *parent)
+{
+
+}
+
+void DiaryMgr::upload (QString *diary, int itemNo)
+{
+    if(NULL == diary||itemNo!= DIARY_STRUCT_SIZE)
+    {
+        return;
+    }
+
+    Diary oneDiary;
+    int i = 0;
+    oneDiary.title = diary[i++];
+    oneDiary.content =  diary[i++];
+    oneDiary.date = diary[i++];
+    oneDiary.writerName = diary[i++];
+    oneDiary.writerId = diary[i++];
+
+    QByteArray cmd = buildcmd (&oneDiary);
+    datacntr->request (this,cmd);
+}
+
+QByteArray DiaryMgr::buildcmd (Diary *content)
+{
+    QByteArray cmd;
+    QDataStream ds(&cmd,QIODevice::ReadWrite);
+    ds<<HANDIN<<DIARY<<content->title.toUtf8 ()<<content->content.toUtf8 ()<<content->date.toUtf8 ()<<content->writerName.toUtf8 ()<<content->writerId.toUtf8 ();
+
+    QByteArray temp;
+    QDataStream ds2(&temp,QIODevice::ReadWrite);
+    ds2<<cmd.size ();
+
+    cmd = temp + cmd;
+    return cmd;
+}
+void DiaryMgr::setDatacntr (DataTrans *dc)
+{
+    this->datacntr = dc;
+}
+void DiaryMgr::recv (QByteArray data)
+{
+    QByteArray &status = data;
+    QDataStream ds(&status,QIODevice::ReadOnly);
+    char *str;
+    ds>>str;
+    if(!strcmp (str,NOTHING))
+    {
+        dispStatus(status);
+        return;
+    }
+
+    ds>>str;
+    if(!strcmp(str,DIARY))
+    {
+        dispStatus(status);
+    }else if(!strcmp (str,DIARIES))
+    {
+        QList<Diary> diaryList;
+        /*
+         *read data to build many diaries whose content is empty
+         *and put them to the list,realise this later
+        */
+        dispDiaList (diaryList);
+    }else if(!strcmp(str,DIA_CON))
+    {
+        QByteArray content;
+        ds>>content;
+        QString contentToDisp(content);
+        dispDiaContent (contentToDisp);
+    }
+}
+
+void DiaryMgr::checkDiary ()
+{
+    /*
+     *for debug and I will realise it later
+    */
+#ifdef DEBUG
+    QString datefrom = "2011-1-1";
+    QString dateto = "2011-12-12";
+    diaries (datefrom,dateto);
+#endif
+}
+
+void DiaryMgr::diaries (QString datefrom, QString dateto)
+{
+    QByteArray cmd;
+    QDataStream ds(&cmd,QIODevice::ReadWrite);
+    ds<<GET<<DIARIES<<datefrom.toUtf8 ()<<dateto.toUtf8 ();
+    QByteArray temp;
+    QDataStream ds2(&temp,QIODevice::ReadWrite);
+    ds2<<cmd.size ();
+
+    cmd = temp + cmd;
+
+    datacntr->request (this,cmd);
+}
+
+void DiaryMgr::fetchContent (QString date)
+{
+    QByteArray cmd;
+    QDataStream ds(&cmd,QIODevice::ReadWrite);
+    ds<<GET<<DIA_CON<<date.toUtf8 ();
+    QByteArray temp;
+    QDataStream ds2(&temp,QIODevice::ReadWrite);
+    ds2<<cmd.size ();
+
+    cmd = temp + cmd;
+
+    datacntr->request (this,cmd);
+}
+
+void DiaryMgr::dispStatus (QByteArray &status)
+{
+/*
+ *call ui modules to show status
+*/
+}
+void DiaryMgr::dispDiaList (QList<Diary> &list)
+{
+    /*
+     *call ui modules to show the list of diaries
+    */
+}
+void DiaryMgr::dispDiaContent (QString &content)
+{
+    /*
+     *call ui modules to show a content of a diary
+    */
+}

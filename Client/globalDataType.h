@@ -22,4 +22,13 @@ struct GoodInfo
    QString owner;
    QString arriveTime;
 };
+
+struct Diary
+{
+    QString title;
+    QString content;
+    QString date;
+    QString writerName;
+    QString writerId;
+};
 #endif // GLOBALDATATYPE_H

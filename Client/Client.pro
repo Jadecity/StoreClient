@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     storageMgr.cpp \
     teststoragemgr.cpp \
     excepEvents.cpp \
-    testuecepmgr.cpp
+    testuecepmgr.cpp \
+    testdiary.cpp
 
 HEADERS += \
     ui.h \
@@ -39,4 +40,5 @@ HEADERS += \
     cmddef.h \
     teststoragemgr.h \
     globalDataType.h \
-    testuecepmgr.h
+    testuecepmgr.h \
+    testdiary.h
