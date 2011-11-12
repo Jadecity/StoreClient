@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     teststoragemgr.cpp \
     excepEvents.cpp \
     testuecepmgr.cpp \
-    testdiary.cpp
+    testdiary.cpp \
+    statics.cpp
 
 HEADERS += \
     ui.h \
