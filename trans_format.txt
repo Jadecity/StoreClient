@@ -1,0 +1,111 @@
+传输的格式:
+通用格式是：总字节数（int）|命令类型（string）|命令名（就是命令对象,string）|数据。
+形成字节数组的手段：
+必须使用下面的方法：
+
+向字节数组中写入：
+QByteArray data;
+QDataStream ds(&data,QIODevice::READWRITE);
+ds<<[这里接的是单个的数据];
+
+从字节数组中读出：
+QByteArray data;
+QDataStream ds(&data,QIODevice::READWRITE);
+ds>>[这里接的是单个的数据];
+
+下面列出现有的数据传输格式，供调试使用
+通过坐标查看货物信息：
+send format: size|GET|POSI_INFO|x(int)|y(int)
+expect format:size|标志状态的字符串|POSI_INFO|（剩下的部分就是按照PosiInfo这个结构体定义的各变量顺序挨个排列了）
+
+ex.:
+QByteArray data;
+QDataStream ds(&data,QIODevice::READWRITE);
+ds<<GET<<POSI_INFO<<4<<5;
+QByteArray data2;
+QDataStream ds2(&data2,QIODevice::READWRITE);
+ds2<<data.size();
+data = data2 + data;
+
+socket.write(data);
+
+通过名称查看货物信息
+send format:size|GET|GOOD_INFO|goodname(string)
+expect format:size|标志状态的字符串|GOOD_INFO|数据
+
+提交用户异常（就是退货啊那些个破事）
+send format:size|HANDIN|USR_EXCEPT|data(数据顺序为ExcepRec结构体定义的顺序，格式后面会统一说明)
+expect format:size|标志状态的字符串|USR_EXCEPT
+
+注：程序中所有需要传输的字符串（QString或者是const char*类型的字符串）全部需要先转化为QByteArray，再通过QDataStream 的<<符号输入到最终发出的那个字节数组中，但是所有“标志状态的字符串”以及“命令对象”全部是以宏定义的方式定义的，以const char*的身份输入到最终用于在网络中传输的那个字节数组中
+例：
+#define GET "GET"
+QByteArray data;
+QDataStream ds(&data,QIODevice::READWRITE);
+ds<<GET;
+
+至于上面提到的数据的具体格式参看源文件中定义的各种结构体
+下面摘出现有的结构体的定义：
+
+ struct ExcepRec
+    {
+        QString title;
+        QString abstract;
+        QString detailDes;
+        QString reason;
+        QString action;
+        QString handlerId;
+        QString handlerName;
+        QString time;
+    };
+
+struct PosiInfo
+{
+   QString goodname;
+   int stayedtime;
+   int toStay;
+   double price;
+   int amount;
+   QString unit;//unit is evalued how amount is measured
+   QString owner;
+};
+
+struct GoodInfo
+{
+    int posi[2];
+    QString name;
+    double price;
+    int amount;
+   QString unit;
+   QString owner;
+   QString arriveTime;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
