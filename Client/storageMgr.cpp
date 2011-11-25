@@ -188,7 +188,7 @@ void DiaryMgr::setDatacntr (DataTrans *dc)
 void DiaryMgr::recv (QByteArray data)
 {
     QByteArray &status = data;
-    QDataStream ds(&status,QIODevice::ReadOnly);
+    QDataStream ds(&status,QIODevice::ReadWrite);
     char *str;
     ds>>str;
     if(!strcmp (str,NOTHING))

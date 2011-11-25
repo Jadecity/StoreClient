@@ -31,4 +31,31 @@ struct Diary
     QString writerName;
     QString writerId;
 };
+
+struct StoreStatus
+{
+//    总容量
+    long totalCap;
+//    剩余容量
+    long remainCap;
+//    货物总量
+    long totalGoods;
+//    所存货物总值
+    long totalVal;
+};
+
+struct IncRank
+{
+//    排名
+    int rank;
+//    公司名称
+    QString Inc_name;
+//    频度计数
+//    显示单位是 笔/月
+    int count;
+//    总共交易金额
+    double trans_amnt;
+//    负责人名字
+    QString mgrName;
+}
 #endif // GLOBALDATATYPE_H

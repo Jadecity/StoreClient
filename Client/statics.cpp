@@ -30,18 +30,21 @@ void StaticCntr::recv (QByteArray data)
         return;
     }
 
-    if(!strcmp (str,DIARY))
+    if(!strcmp (str,THIS_MONTH_THROUGHOUT))
     {
 
-    }else if(!strcmp(str,DIARIES))
+    }else if(!strcmp(str,NEXT_MONTH_THROUGHOUT))
     {
 
-    }else if(!strcmp(str,DIA_CON))
+    }else if(!strcmp(str,GOOD_WASTAGE))
     {
 
-    }else
+    }else if(!strcmp (str,COMPANY_BUSY_RANK))
     {
         //do something for default condition
+    }else
+    {
+        //do default
     }
     //call UI components to display
 }
