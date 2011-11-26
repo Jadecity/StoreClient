@@ -20,5 +20,5 @@
 #define NOTHING "NOTHING"
 #define OK "OK"
 #define EXCEP_STRUCT_SIZE 8
-#define DIARY_STRUCT_SIZE 5
+#define DIARY_STRUCT_SIZE 4
 #endif // CMDDEF_H

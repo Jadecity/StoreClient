@@ -118,14 +118,17 @@ void PosiMgr::lookUpGood(int *posi)
          datacntr->request (this,cmd);
     }
 }
-
-void PosiMgr::lookUpGood (QString name)
+//info包含了四个数据，依次是name,no,datefrom,dateto
+void PosiMgr::lookUpGood (QString *info)
 {
     //build command
     QByteArray cmd;
     QDataStream ds(&cmd,QIODevice::ReadWrite);
     ds<<GET<<GOOD_INFO;
-    ds<<name.toUtf8 ();
+    ds<<info[0].toUtf8 ();
+    ds<<info[1].toUtf8 ();
+    ds<<info[2].toUtf8 ();
+    ds<<info[3].toUtf8 ();
     QByteArray temp;
     QDataStream ds2(&temp,QIODevice::ReadWrite);
     ds2<<cmd.size ();
@@ -162,7 +165,6 @@ void DiaryMgr::upload (QString *diary, int itemNo)
     oneDiary.content =  diary[i++];
     oneDiary.date = diary[i++];
     oneDiary.writerName = diary[i++];
-    oneDiary.writerId = diary[i++];
 
     QByteArray cmd = buildcmd (&oneDiary);
     datacntr->request (this,cmd);

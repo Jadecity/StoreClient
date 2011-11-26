@@ -29,7 +29,8 @@ struct Diary
     QString content;
     QString date;
     QString writerName;
-    QString writerId;
+//    用户不需要输入ID
+//    QString writerId;
 };
 
 struct StoreStatus

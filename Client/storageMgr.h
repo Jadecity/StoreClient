@@ -36,7 +36,8 @@ namespace StorageMgr
           void dispException(QString &msg);
     public slots:
         void lookUpGood(int *posi);
-        void lookUpGood (QString name);
+ //info包含了四个数据，依次是name,no,datefrom,dateto
+        void lookUpGood (QString *info);
         void recv (QByteArray data);
     };
 
